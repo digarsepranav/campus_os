@@ -2,6 +2,7 @@ package com.campusos.campusOS.controller;
 
 import com.campusos.campusOS.dto.StudentRegistrationRequestDTO;
 import com.campusos.campusOS.dto.StudentResponseDTO;
+import com.campusos.campusOS.dto.UpdateStudentRequestDTO;
 import com.campusos.campusOS.entity.Student;
 import com.campusos.campusOS.service.StudentService;
 import jakarta.validation.Valid;
@@ -36,5 +37,27 @@ public class StudentController {
     public ResponseEntity<StudentResponseDTO> getStudentById(@PathVariable Long id) {
         return ResponseEntity
                 .ok(service.getStudentById(id));
+    }
+    @GetMapping("/api/students/email/{email}")
+    public ResponseEntity<StudentResponseDTO> getStudentByEmail(@PathVariable String email) {
+        return ResponseEntity
+                .ok(service.getStudentByEmail(email));
+    }
+
+    @GetMapping("/api/students/cgpa/{cgpa}")
+    public ResponseEntity<List<StudentResponseDTO>> getStudentHavingCgpaGreaterThan(@PathVariable double cgpa) {
+        return ResponseEntity
+                .ok(service.getStudentCgpaGreaterThan(cgpa));
+    }
+    @GetMapping("/api/students/cgpa")
+    public ResponseEntity<List<StudentResponseDTO>> getStudentHavingCgpaBetween(@RequestParam double minCgpa, @RequestParam double maxCgpa) {
+        return ResponseEntity
+                .ok(service.getStudentByCgpaBetween(minCgpa, maxCgpa));
+    }
+
+    @PutMapping("/api/students/update/{id}")
+    public ResponseEntity<StudentResponseDTO> updateStudent(@Valid @RequestBody UpdateStudentRequestDTO updateStudentRequestDTO, @PathVariable Long id) {
+        return ResponseEntity
+                .ok(service.updateStudent(id , updateStudentRequestDTO));
     }
 }

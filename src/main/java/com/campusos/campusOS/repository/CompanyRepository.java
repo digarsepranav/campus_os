@@ -1,4 +1,7 @@
 package com.campusos.campusOS.repository;
 
-public interface Company {
+import com.campusos.campusOS.entity.Company;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CompanyRepository extends JpaRepository<Company, Long> {
 }

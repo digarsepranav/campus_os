@@ -13,4 +13,29 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.CONFLICT)
                 .body(dex.getMessage());
     }
+
+    @ExceptionHandler(StudentNotFoundException.class)
+    public ResponseEntity<String> noStudentFound(StudentNotFoundException ex) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(ex.getMessage());
+    }
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleIllegalArgument(IllegalArgumentException ex) {
+        return ResponseEntity
+                .badRequest()
+                .body(ex.getMessage());
+    }
+    @ExceptionHandler(CompanyAlreadyExistsException.class)
+    public ResponseEntity<String> companyAlreadyExists(CompanyAlreadyExistsException cx) {
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(cx.getMessage());
+    }
+    @ExceptionHandler(CompanyNotFoundException.class)
+    public ResponseEntity<String> companyNotFound(CompanyNotFoundException cx) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(cx.getMessage());
+    }
 }

@@ -1,8 +1,11 @@
 package com.campusos.campusOS.dto;
 
+import com.campusos.campusOS.enums.Branch;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Set;
 
 @Getter
 @Setter
@@ -33,4 +36,7 @@ public class UpdateJobRequestDTO {
     @NotNull(message = "Company ID is required")
     @Positive(message = "Company ID must be positive")
     private Long companyId;
+
+    @NotEmpty
+    private Set<@NotNull Branch> eligibleBranches;
 }

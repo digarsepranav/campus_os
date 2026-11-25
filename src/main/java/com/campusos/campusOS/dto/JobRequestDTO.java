@@ -1,10 +1,12 @@
 package com.campusos.campusOS.dto;
 
+import com.campusos.campusOS.enums.Branch;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -27,4 +29,7 @@ public class JobRequestDTO {
     private Integer graduationYear;
     @NotNull
     private Long companyId;
+
+    @NotEmpty
+    private Set<@NotNull Branch> eligibleBranches;
 }

@@ -1,8 +1,11 @@
 package com.campusos.campusOS.dto;
 
+import com.campusos.campusOS.enums.Branch;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Set;
 
 @Getter
 @Setter

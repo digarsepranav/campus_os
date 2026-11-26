@@ -35,6 +35,8 @@ public class StudentService {
         student.setName(name);
         student.setCgpa(cgpa);
         student.setEmail(email);
+        student.setGraduationYear(studentRegistrationRequestDTO.getGraduationYear());
+        student.setBranch(studentRegistrationRequestDTO.getBranch());
 
         if (studentRepository.existsByEmail(email)) {
             throw new DuplicateEmailException("Email already registered");
@@ -47,6 +49,8 @@ public class StudentService {
         responseDTO.setCgpa(savedUser.getCgpa());
         responseDTO.setEmail(savedUser.getEmail());
         responseDTO.setName(savedUser.getName());
+        responseDTO.setBranch(savedUser.getBranch());
+        responseDTO.setGraduationYear(savedUser.getGraduationYear());
 
         return responseDTO;
     }
@@ -61,6 +65,8 @@ public class StudentService {
                     dto.setName(student.getName());
                     dto.setCgpa(student.getCgpa());
                     dto.setEmail(student.getEmail());
+                    dto.setBranch(student.getBranch());
+                    dto.setGraduationYear(dto.getGraduationYear());
 
                     return dto;
                 });
@@ -77,6 +83,8 @@ public class StudentService {
             studentResponseDTO.setEmail(student.get().getEmail());
             studentResponseDTO.setId(student.get().getId());
             studentResponseDTO.setCgpa(student.get().getCgpa());
+            studentResponseDTO.setGraduationYear(student.get().getGraduationYear());
+            studentResponseDTO.setBranch(student.get().getBranch());
             return studentResponseDTO;
         }
         throw new StudentNotFoundException("No student found for this ID");
@@ -94,6 +102,8 @@ public class StudentService {
         studentResponseDTO.setEmail(foundStudent.getEmail());
         studentResponseDTO.setId(foundStudent.getId());
         studentResponseDTO.setCgpa(foundStudent.getCgpa());
+        studentResponseDTO.setBranch(foundStudent.getBranch());
+        studentResponseDTO.setGraduationYear(foundStudent.getGraduationYear());
         return studentResponseDTO;
     }
 
@@ -101,7 +111,7 @@ public class StudentService {
         List<Student> students = studentRepository.findByCgpaGreaterThan(cgpa);
         List<StudentResponseDTO> studentResponseDTOS = students.stream()
                 .map(student -> new StudentResponseDTO(
-                        student.getId(), student.getName(), student.getEmail(), student.getCgpa()
+                        student.getId(), student.getName(), student.getEmail(), student.getCgpa(), student.getGraduationYear(), student.getBranch()
                 )).toList();
         return studentResponseDTOS;
     }
@@ -110,7 +120,7 @@ public class StudentService {
         List<Student> students = studentRepository.findByCgpaBetween(minCgpa, maxCgpa);
         List<StudentResponseDTO> studentResponseDTOS = students.stream().map(
                 student -> new StudentResponseDTO(
-                        student.getId(), student.getName(), student.getEmail(), student.getCgpa()
+                        student.getId(), student.getName(), student.getEmail(), student.getCgpa(), student.getGraduationYear(), student.getBranch()
                 )
         ).toList();
         return studentResponseDTOS;
@@ -130,12 +140,16 @@ public class StudentService {
         student.setName(dto.getName());
         student.setEmail(dto.getEmail());
         student.setCgpa(dto.getCgpa());
+        student.setBranch(dto.getBranch());
+        student.setGraduationYear(dto.getGraduationYear());
 
         StudentResponseDTO studentResponseDTO = new StudentResponseDTO();
         studentResponseDTO.setName(student.getName());
         studentResponseDTO.setCgpa(student.getCgpa());
         studentResponseDTO.setEmail(student.getEmail());
         studentResponseDTO.setId(student.getId());
+        studentResponseDTO.setGraduationYear(student.getGraduationYear());
+        studentResponseDTO.setBranch(student.getBranch());
 
         return studentResponseDTO;
     }

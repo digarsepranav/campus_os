@@ -1,9 +1,9 @@
 package com.campusos.campusOS.entity;
 
+import com.campusos.campusOS.enums.Branch;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.TargetEmbeddable;
 
 @Getter
 @Setter
@@ -18,4 +18,7 @@ public class Student {
     @Column(nullable = false, unique = true)
     private String email;
     private Double cgpa;
+    private Integer graduationYear;
+    @Enumerated(EnumType.STRING)
+    private Branch branch;
 }

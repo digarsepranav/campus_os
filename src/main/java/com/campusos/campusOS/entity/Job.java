@@ -1,11 +1,15 @@
 package com.campusos.campusOS.entity;
 
+import com.campusos.campusOS.enums.Branch;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.resilience.annotation.EnableResilientMethods;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -33,4 +37,10 @@ public class Job {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
     private Company company;
+
+    @ElementCollection
+    @Enumerated(EnumType.STRING)
+            @CollectionTable(name = "job_eligible_branches", joinColumns = @JoinColumn(name = "job_id"))
+            @Column(name = "branch", nullable = false)
+    private Set<Branch> eligibleBranches = new HashSet<>();
 }

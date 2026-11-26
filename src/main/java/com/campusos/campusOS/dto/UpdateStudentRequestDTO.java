@@ -5,8 +5,6 @@ import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Set;
-
 @Getter
 @Setter
 public class UpdateStudentRequestDTO {
@@ -20,4 +18,10 @@ public class UpdateStudentRequestDTO {
     @DecimalMin("0.0")
     @DecimalMax("10.0")
     private Double cgpa;
+
+    @NotNull
+    private Integer graduationYear;
+
+    @NotNull
+    private Branch branch;
 }

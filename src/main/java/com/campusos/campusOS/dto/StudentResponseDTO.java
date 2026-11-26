@@ -1,5 +1,6 @@
 package com.campusos.campusOS.dto;
 
+import com.campusos.campusOS.enums.Branch;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,5 +14,7 @@ public class StudentResponseDTO {
     private Long id;
     private String name;
     private String email;
-    private double cgpa;
+    private Double cgpa;
+    private Integer graduationYear;
+    private Branch branch;
 }

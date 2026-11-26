@@ -1,5 +1,6 @@
 package com.campusos.campusOS.dto;
 
+import com.campusos.campusOS.enums.Branch;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,4 +20,10 @@ public class StudentRegistrationRequestDTO {
     @DecimalMin("0.0")
     @DecimalMax("10.0")
     private Double cgpa;
+
+    @NotNull
+    private Integer graduationYear;
+
+    @NotNull
+    private Branch branch;
 }

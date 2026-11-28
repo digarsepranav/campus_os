@@ -44,4 +44,16 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.NOT_FOUND)
                 .body(cx.getMessage());
     }
+    @ExceptionHandler(DuplicateApplicationException.class)
+    public ResponseEntity<String> duplicateApplicationException(DuplicateApplicationException cx) {
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(cx.getMessage());
+    }
+    @ExceptionHandler(IneligibleStudentException.class)
+    public ResponseEntity<String> ineligibleStudentException(IneligibleStudentException cx) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(cx.getMessage());
+    }
 }
